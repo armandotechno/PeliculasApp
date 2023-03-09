@@ -1,10 +1,12 @@
-import { Text, View } from "react-native";
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { Navegation } from './src/navegation/Navegation';
 
 const App = () => {
   return (
-    <View>
-      <Text>Hola App de pelis :D</Text>
-    </View>
+    <NavigationContainer>
+        <Navegation />
+    </NavigationContainer>
   )
 }
 
