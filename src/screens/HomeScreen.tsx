@@ -9,7 +9,7 @@ import { HorizontalSlider } from '../components/HorizontalSlider';
 import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
 import { getImageColors } from '../helpers/getColores';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { GradientContext } from '../context/GradientContext';
 
 const { width: windowWidth } = Dimensions.get('window');
@@ -25,11 +25,15 @@ export const HomeScreen = () => {
       const uri = `https://image.tmdb.org/t/p/w500${ movie.poster_path }`   
       
       const [ primary = 'green', secondary = 'orange' ] = await getImageColors( uri );
-
       setMainColors({ primary, secondary })
       
-      
     }
+
+    useEffect(() => {
+        if ( nowPlaying.length > 0 ) {
+          getPosterColors(0)
+        }
+    }, [ nowPlaying ])
 
     if ( isLoading ) {
       return (
